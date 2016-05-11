@@ -108,7 +108,7 @@ var tests = []struct {
 	{"BenchmarkReflect", "reflect", false},
 	{"BenchmarkTar", "archive/tar", false},
 	{"BenchmarkXML", "encoding/xml", false},
-	{"BenchmarkMakeBash", "", true},
+	{"BenchmarkStdCmd", "", true},
 	{"BenchmarkHelloSize", "", false},
 	{"BenchmarkCmdGoSize", "", true},
 }
@@ -173,10 +173,10 @@ func runCmd(name string, cmd *exec.Cmd) {
 	fmt.Printf("%s 1 %d ns/op\n", name, time.Since(start).Nanoseconds())
 }
 
-func runMakeBash() {
-	cmd := exec.Command("./make.bash")
+func runStdCmd() {
+	cmd := exec.Command("go", "build", "-a", "std", "cmd")
 	cmd.Dir = filepath.Join(runtime.GOROOT(), "src")
-	runCmd("BenchmarkMakeBash", cmd)
+	runCmd("BenchmarkStdCmd", cmd)
 }
 
 func runCmdGoSize() {
@@ -221,8 +221,8 @@ func runSize(name, file string) {
 
 func runBuild(name, dir string) {
 	switch name {
-	case "BenchmarkMakeBash":
-		runMakeBash()
+	case "BenchmarkStdCmd":
+		runStdCmd()
 		return
 	case "BenchmarkCmdGoSize":
 		runCmdGoSize()
