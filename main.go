@@ -102,7 +102,7 @@ var tests = []struct {
 	{"BenchmarkTemplate", "html/template", false},
 	{"BenchmarkUnicode", "unicode", false},
 	{"BenchmarkGoTypes", "go/types", false},
-	{"BenchmarkCompiler", "cmd/compile/internal/gc", false},
+	// {"BenchmarkCompiler", "cmd/compile/internal/gc", false},
 	{"BenchmarkSSA", "cmd/compile/internal/ssa", false},
 	{"BenchmarkFlate", "compress/flate", false},
 	{"BenchmarkGoParser", "go/parser", false},
